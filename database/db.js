@@ -62,7 +62,7 @@ async function getDb() {
   if (_db) return _db;
 
   const SQL = await initSqlJs({
-    locateFile: (file) => `https://sql.js.org/dist/${file}`,
+    locateFile: (file) => `/sql-wasm.wasm`,
   });
   let sqlDb;
   if (fs.existsSync(DB_PATH)) {

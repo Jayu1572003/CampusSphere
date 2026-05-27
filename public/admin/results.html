@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results - Admin Portal - CampusSphere</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">CS</div>
+        <div>
+          <div class="sidebar-title">CampusSphere</div>
+          <div class="sidebar-subtitle">Admin Portal</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Menu</div>
+          <a href="dashboard.html" class="nav-link"><span class="icon">📊</span> Dashboard</a>
+          <a href="students.html" class="nav-link"><span class="icon">👩‍🎓</span> Students</a>
+          <a href="courses.html" class="nav-link"><span class="icon">📚</span> Courses</a>
+          <a href="attendance.html" class="nav-link"><span class="icon">📅</span> Attendance</a>
+          <a href="fees.html" class="nav-link"><span class="icon">💳</span> Fees</a>
+          <a href="results.html" class="nav-link active"><span class="icon">🏆</span> Results</a>
+          <a href="notifications.html" class="nav-link"><span class="icon">🔔</span> Notifications</a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar" id="sidebar-avatar">A</div>
+          <div>
+            <div class="user-name" id="sidebar-user-name">Admin</div>
+            <div class="user-role" id="sidebar-user-role">Administrator</div>
+          </div>
+          <button onclick="Auth.logout()" class="btn btn-secondary btn-sm" style="margin-left:auto; padding:5px 8px;">🚪</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-bar">
+        <div>
+          <h1 class="page-title">Examination Results</h1>
+          <p class="page-subtitle">Publish and manage student grades</p>
+        </div>
+        <div class="top-bar-actions">
+          <button class="btn btn-primary" onclick="openModal('resultModal')">➕ Add Result</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <div class="card">
+          <div class="filter-bar">
+            <select id="semesterFilter" class="filter-select">
+              <option value="">All Semesters</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+            <select id="examTypeFilter" class="filter-select">
+              <option value="">All Exams</option>
+              <option value="final">Final Exam</option>
+              <option value="midterm">Midterm</option>
+              <option value="quiz">Quiz / Assignment</option>
+            </select>
+            <div class="search-input">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" placeholder="Search student or course...">
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student Info</th>
+                  <th>Course</th>
+                  <th>Exam Type & Sem</th>
+                  <th>Marks</th>
+                  <th>Grade</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="results-tbody">
+                <tr><td colspan="6" class="text-center loading"><div class="spinner"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Add Result</h3>
+        <button class="modal-close" onclick="closeModal('resultModal')">✕</button>
+      </div>
+      <form id="resultForm">
+        <div class="modal-body">
+          <input type="hidden" id="resultId">
+          <div class="form-group" id="studentSelectGroup">
+            <label>Student*</label>
+            <select id="studentId" class="form-control" required>
+              <option value="">Select Student</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Course*</label>
+            <select id="courseId" class="form-control" required>
+              <option value="">Select Course</option>
+            </select>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Exam Type</label>
+              <select id="examType" class="form-control">
+                <option value="final">Final Exam</option>
+                <option value="midterm">Midterm</option>
+                <option value="quiz">Quiz</option>
+                <option value="assignment">Assignment</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Semester*</label>
+              <input type="number" id="semester" class="form-control" min="1" max="8" required>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="form-group">
+              <label>Marks Obtained*</label>
+              <input type="number" id="marksObtained" class="form-control" step="0.5" required>
+            </div>
+            <div class="form-group">
+              <label>Maximum Marks*</label>
+              <input type="number" id="maxMarks" class="form-control" value="100" required>
+            </div>
+            <div class="form-group">
+              <label>Grade Override</label>
+              <input type="text" id="grade" class="form-control" placeholder="Auto-calculated">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('resultModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveBtn">Save Result</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/admin/results.js"></script>
+</body>
+</html>

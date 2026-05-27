@@ -1,4 +1,4 @@
-const initSqlJs = require('sql.js');
+const initSqlJs = require("sql.js");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const fs = require("fs");
@@ -62,7 +62,7 @@ async function getDb() {
   if (_db) return _db;
 
   const SQL = await initSqlJs({
-    locateFile: (file) => path.join(__dirname, '..', 'public', file),
+    locateFile: (file) => path.join(__dirname, "..", "public", file),
   });
   let sqlDb;
   if (fs.existsSync(DB_PATH)) {

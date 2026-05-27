@@ -9,41 +9,45 @@ The application is built using a modern **Node.js/Express** backend and a **Vani
 ## ✨ Features
 
 ### 👤 Role-Based Access Control (RBAC)
-*   **Admin Portal**: Complete administrative command center.
-*   **Student Portal**: Self-service portal for students to track their academic progress.
-*   **JWT-Based Authentication**: Secure stateless session management with bcrypt-hashed passwords.
+
+- **Admin Portal**: Complete administrative command center.
+- **Student Portal**: Self-service portal for students to track their academic progress.
+- **JWT-Based Authentication**: Secure stateless session management with bcrypt-hashed passwords.
 
 ### 🛠️ Admin Features
-*   **Analytics Dashboard**: Visual overview of student counts, course counts, attendance percentages, and fee collections.
-*   **Student Management**: Add, update, view, and delete student profiles (personal info, program, batch, semester, status).
-*   **Course Management**: Manage curriculum, course codes, credits, and instructors.
-*   **Attendance Tracking**: Mark and monitor daily attendance (present, absent, late) for any student and course.
-*   **Grade Book (Results)**: Input and update exam grades (Midterm & Final examinations).
-*   **Fee Management**: Track tuition, hostel, and library fee payments; mark status as paid, pending, or overdue.
-*   **Broadcast Announcements**: Create system-wide announcements with targets (All, Students, or Admins).
+
+- **Analytics Dashboard**: Visual overview of student counts, course counts, attendance percentages, and fee collections.
+- **Student Management**: Add, update, view, and delete student profiles (personal info, program, batch, semester, status).
+- **Course Management**: Manage curriculum, course codes, credits, and instructors.
+- **Attendance Tracking**: Mark and monitor daily attendance (present, absent, late) for any student and course.
+- **Grade Book (Results)**: Input and update exam grades (Midterm & Final examinations).
+- **Fee Management**: Track tuition, hostel, and library fee payments; mark status as paid, pending, or overdue.
+- **Broadcast Announcements**: Create system-wide announcements with targets (All, Students, or Admins).
 
 ### 🎒 Student Features
-*   **Personal Dashboard**: View GPA, attendance rate, total outstanding fees, and recent notifications.
-*   **My Grades**: View scores and letter grades for Midterm and Final examinations.
-*   **Attendance Records**: Check attendance history and status across enrolled subjects.
-*   **Fees & Receipts**: Access payment invoices and transaction receipts.
-*   **System Notifications**: Read direct alerts and announcements from administration.
+
+- **Personal Dashboard**: View GPA, attendance rate, total outstanding fees, and recent notifications.
+- **My Grades**: View scores and letter grades for Midterm and Final examinations.
+- **Attendance Records**: Check attendance history and status across enrolled subjects.
+- **Fees & Receipts**: Access payment invoices and transaction receipts.
+- **System Notifications**: Read direct alerts and announcements from administration.
 
 ### 🎨 Modern UI & UX
-*   **Glassmorphic Design**: Curated, harmonious color palettes with interactive 3D parallax effects on the login screen.
-*   **Dark/Light Mode**: Smooth theme transition that persists in `LocalStorage`.
-*   **Responsive Layout**: Fully optimized for mobile, tablet, and desktop screens.
-*   **Toast Notifications**: Real-time interactive feedback on user actions.
+
+- **Glassmorphic Design**: Curated, harmonious color palettes with interactive 3D parallax effects on the login screen.
+- **Dark/Light Mode**: Smooth theme transition that persists in `LocalStorage`.
+- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop screens.
+- **Toast Notifications**: Real-time interactive feedback on user actions.
 
 ---
 
 ## 🛠️ Tech Stack
 
-*   **Frontend**: Vanilla HTML5, CSS3 (using CSS Variables for theme management), Vanilla ES6 JavaScript (using async/await API fetches).
-*   **Backend**: Node.js, Express.js.
-*   **Database**: `sql.js` (WebAssembly SQLite DB, auto-saved to disk at `database/sms.db`).
-*   **Security**: JSON Web Tokens (JWT) for authentication, `bcryptjs` for password hashing.
-*   **Dev Utilities**: `nodemon` for hot-reloading development environment.
+- **Frontend**: Vanilla HTML5, CSS3 (using CSS Variables for theme management), Vanilla ES6 JavaScript (using async/await API fetches).
+- **Backend**: Node.js, Express.js.
+- **Database**: `sql.js` (WebAssembly SQLite DB, auto-saved to disk at `database/sms.db`).
+- **Security**: JSON Web Tokens (JWT) for authentication, `bcryptjs` for password hashing.
+- **Dev Utilities**: `nodemon` for hot-reloading development environment.
 
 ---
 
@@ -80,11 +84,13 @@ The application is built using a modern **Node.js/Express** backend and a **Vani
 ## 🚀 Quick Start
 
 ### 📋 Prerequisites
+
 Make sure you have [Node.js](https://nodejs.org/) installed (v16.x or higher is recommended).
 
 ### 🔧 Installation
 
 1. Clone or extract the repository:
+
    ```bash
    cd "Student Management System"
    ```
@@ -96,15 +102,16 @@ Make sure you have [Node.js](https://nodejs.org/) installed (v16.x or higher is 
 
 ### 💻 Running the Application
 
-*   **Development Mode** (with auto-reload):
-    ```bash
-    npm run dev
-    ```
+- **Development Mode** (with auto-reload):
 
-*   **Production Mode**:
-    ```bash
-    npm start
-    ```
+  ```bash
+  npm run dev
+  ```
+
+- **Production Mode**:
+  ```bash
+  npm start
+  ```
 
 Once started, the application will seed a demo database (if it doesn't already exist) and run at:
 👉 **[http://localhost:3000](http://localhost:3000)**
@@ -115,10 +122,10 @@ Once started, the application will seed a demo database (if it doesn't already e
 
 To test the application out of the box, use the following pre-seeded credentials:
 
-| Portal | Username / ID | Password | Access Rights |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin` | `admin123` | Full access to manage students, courses, fees, attendance, grades, and notifications |
-| **Student** | `STU2024001` | `student123` | Access to student profile, dashboard, grades, attendance logs, and fees |
+| Portal      | Username / ID | Password     | Access Rights                                                                        |
+| :---------- | :------------ | :----------- | :----------------------------------------------------------------------------------- |
+| **Admin**   | `admin`       | `admin123`   | Full access to manage students, courses, fees, attendance, grades, and notifications |
+| **Student** | `STU2024001`  | `student123` | Access to student profile, dashboard, grades, attendance logs, and fees              |
 
 ---
 
@@ -127,18 +134,25 @@ To test the application out of the box, use the following pre-seeded credentials
 All API endpoints are protected and require a `Bearer <token>` in the `Authorization` header, except for public login.
 
 ### Authentication
-*   `POST /api/auth/login` - Login and get JWT token.
+
+- `POST /api/auth/login` - Login and get JWT token.
 
 ### Admin & Student Services
-*   `GET /api/dashboard/stats` - Retrieve stats/metrics (filtered depending on role).
-*   `GET /api/students` | `POST /api/students` | `PUT /api/students/:id` | `DELETE /api/students/:id` - Manage student records.
-*   `GET /api/courses` | `POST /api/courses` | `PUT /api/courses/:id` | `DELETE /api/courses/:id` - Manage courses.
-*   `GET /api/attendance` | `POST /api/attendance` - Record/view attendance.
-*   `GET /api/fees` | `POST /api/fees/pay` - Track fee details and post payments.
-*   `GET /api/results` | `POST /api/results` - Retrieve or input midterm/final grades.
-*   `GET /api/notifications` | `POST /api/notifications` - View/broadcast system notifications.
+
+- `GET /api/dashboard/stats` - Retrieve stats/metrics (filtered depending on role).
+- `GET /api/students` | `POST /api/students` | `PUT /api/students/:id` | `DELETE /api/students/:id` - Manage student records.
+- `GET /api/courses` | `POST /api/courses` | `PUT /api/courses/:id` | `DELETE /api/courses/:id` - Manage courses.
+- `GET /api/attendance` | `POST /api/attendance` - Record/view attendance.
+- `GET /api/fees` | `POST /api/fees/pay` - Track fee details and post payments.
+- `GET /api/results` | `POST /api/results` - Retrieve or input midterm/final grades.
+- `GET /api/notifications` | `POST /api/notifications` - View/broadcast system notifications.
 
 ---
 
 ## 📝 License
+
 This project is open-source and available under the [MIT License](LICENSE).
+
+# CampusSphere
+
+CampusSphere is a web-based Academic Management System that automates student, faculty, attendance, examination, result, and course management. It helps educational institutions reduce paperwork, improve efficiency, and provide centralized access to academic records for administrators, teachers, and students.
